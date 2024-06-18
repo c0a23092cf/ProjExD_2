@@ -17,15 +17,15 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 ANGLE = { #rotozoomしたSurfaceの辞書
-    (0, -5): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 270, 2.0), True, False),
-    (+5, -5): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 315, 2.0), True, False),
-    (+5, 0): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0), True, False),
-    (+5, +5): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 45, 2.0), True, False),
-    (0, +5): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 90, 2.0), True, False),
-    (-5, +5): pg.transform.rotozoom(pg.image.load("fig/3.png"), 45, 2.0),
-    (-5, 0): pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0),
-    (-5, -5): pg.transform.rotozoom(pg.image.load("fig/3.png"), 315, 2.0),
-    (0, 0): pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0),
+    (0, -5): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 270, 2.0), True, False), # 上
+    (+5, -5): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 315, 2.0), True, False), # 右上
+    (+5, 0): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0), True, False), # 右
+    (+5, +5): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 45, 2.0), True, False), # 右下
+    (0, +5): pg.transform.flip(pg.transform.rotozoom(pg.image.load("fig/3.png"), 90, 2.0), True, False), # 下
+    (-5, +5): pg.transform.rotozoom(pg.image.load("fig/3.png"), 45, 2.0), # 左下
+    (-5, 0): pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0), # 左
+    (-5, -5): pg.transform.rotozoom(pg.image.load("fig/3.png"), 315, 2.0), # 左上
+    (0, 0): pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0), # 左（停止時）
 }
 
 
@@ -44,13 +44,13 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
 
 
 def kk_angle(rct):
+    """
+    引数：こうかとんのsum_mv
+    戻り値：ANGLE辞書のvalue
+    """
     x = rct[0]
     y = rct[1]
     return ANGLE[x, y]
-"""
-引数：こうかとんのsum_mv
-戻り値：ANGLE辞書のvalue
-"""
 
 
 def main():
@@ -82,7 +82,7 @@ def main():
            if key_lst[k]:
                 sum_mv[0] += v[0]
                 sum_mv[1] += v[1]
-        kk_img = kk_angle(sum_mv)
+        kk_img = kk_angle(sum_mv) # こうかとんの画像更新
         kk_rct.move_ip(sum_mv)
         
         if check_bound(kk_rct) != (True, True):
