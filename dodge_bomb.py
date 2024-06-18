@@ -13,7 +13,6 @@ DELTA = { # 移動量辞書
 }
 
 
-
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -29,6 +28,7 @@ ANGLE = { #rotozoomしたSurfaceの辞書
     (0, 0): pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0),
 }
 
+
 def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
     """
     引数：こうかとんRectかばくだんRect
@@ -42,6 +42,7 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
         tate = False
     return yoko, tate
 
+
 def kk_angle(rct):
     x = rct[0]
     y = rct[1]
@@ -50,7 +51,6 @@ def kk_angle(rct):
 引数：こうかとんのsum_mv
 戻り値：ANGLE辞書のvalue
 """
-    
 
 
 def main():
